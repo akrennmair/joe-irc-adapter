@@ -8,6 +8,9 @@ import (
 	irc "gopkg.in/irc.v3"
 )
 
+// Config contains all the IRC configuration
+// that you need. Required fields are Address,
+// Nick and Channel.
 type Config struct {
 	Address string
 	Nick    string
@@ -17,6 +20,9 @@ type Config struct {
 	Channel string
 }
 
+// Adapter accepts a Config object and returns a
+// joe.Module that can then used when creating a
+// new bot using joe.New.
 func Adapter(cfg Config) joe.Module {
 	return joe.ModuleFunc(func(joeConf *joe.Config) error {
 		conn, err := net.Dial("tcp", cfg.Address)
